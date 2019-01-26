@@ -258,7 +258,7 @@ end
 
 -- configuration - edit to your liking
 wp_index = 1
-wp_timeout  = 14400
+wp_timeout  = 10800 -- every 3 hours (24*60*60/intervale in hours = seconds left to change randomly wallpaper)
 wp_path = "/path/to/theme/wallpapers/" -- change path when you change your theme, to match the wallpaper tones with the theme tone.
 wp_filter = function(s) return string.match(s,"%.png$") or string.match(s,"%.jpg$") end
 wp_files = scandir(wp_path, wp_filter)
