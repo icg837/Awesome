@@ -98,6 +98,7 @@ local scrlocker    = "slock"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "一", "二", "三", "四", "五", "六", "七", "八", "九" }
+--awful.util.tagnames = { "1", "10", "11", "100", "101", "110", "111", "1000", "1001" }
 awful.layout.layouts = {
     --awful.layout.suit.floating,
     --awful.layout.suit.tile,
