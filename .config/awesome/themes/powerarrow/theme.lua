@@ -120,7 +120,8 @@ theme.cal = lain.widget.cal({
 })
 
 -- Taskwarrior
---[[ local task = wibox.widget.imagebox(theme.widget_task)
+--[[ commented because it's unnecessary for me
+--local task = wibox.widget.imagebox(theme.widget_task)
 lain.widget.contrib.task.attach(task, {
     -- do not colorize output
     show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
@@ -239,7 +240,8 @@ theme.fs = lain.widget.fs({
 })
 
 -- Battery
---[[ local baticon = wibox.widget.imagebox(theme.widget_battery)
+--[[ commented because I don't use a laptop
+--local baticon = wibox.widget.imagebox(theme.widget_battery)
 local bat = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
@@ -360,10 +362,10 @@ function theme.at_screen_connect(s)
             --]]
             -- using separators
             arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { mailicon, theme.mail and theme.mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, 3, 6), theme.bg_focus),
-            arrow(theme.bg_normal, "#777E76"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { mailicon, theme.mail and theme.mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
+            --arrow("#343434", theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, 3, 6), "#343434"),
+            arrow("#343434", "#777E76"),
             --wibox.container.background(wibox.container.margin(task, 3, 7), "#343434"),
             --arrow("#343434", "#777E76"),
             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#777E76"),
