@@ -495,6 +495,12 @@ globalkeys = my_table.join(
             beautiful.mpd.update()
         end,
         {description = "mpc toggle", group = "widgets"}),
+    awful.key({ altkey, "Control" }, "p",
+        function ()
+            os.execute("mpc pause")
+            beautiful.mpd.update()
+        end,
+        {description = "mpc pause", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             os.execute("mpc stop")
