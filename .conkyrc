@@ -1,0 +1,105 @@
+conky.config = {
+    alignment = 'top_left',
+    background = true,
+    cpu_avg_samples = 4,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    font = 'Noto Sans Mono:size=10',
+    gap_x = 25,
+    gap_y = 40,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    extra_newline = false,
+    own_window = true,
+    own_window_argb_visual = true,
+    own_window_class = 'Conky',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    own_window_type = 'desktop',
+    own_window_transparent = true,
+    show_graph_scale = false,
+    show_graph_range = false,
+    stippled_borders = 0,
+    update_interval = 0.5,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true
+}
+
+conky.text = [[
+${font DejaVu Sans Mono:size=12} _______   __${font}
+${font DejaVu Sans Mono:size=12}|       | |  |${font}  ${font Noto Sans Mono:size=12}SISTEMA${font} ${hr}
+${font DejaVu Sans Mono:size=12}|   ____| |  |${font}  Host${alignr}${nodename}
+${font DejaVu Sans Mono:size=12}|  |  __  |  |${font}  Núcleo${alignr}${exec uname -r}
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Encendido${alignr}${uptime}
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Frecuencia de CPU${alignr}${freq_g} GHz
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Temperatura de CPU${alignr}${hwmon temp 1} ºC
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Actualizaciones rama ${execi 130000 cat /etc/pacman-mirrors.conf | grep -i "Branch =" | sed -E "s/(# )*Branch = //g"}${offset 40}${execi 1800 checkupdates | wc -l}
+${font DejaVu Sans Mono:size=12}|__| |__| |__|${font}  Manjaro GNU/Linux ${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
+ 
+${font Noto Sans Mono:size=12}USO DE DISCO${font} ${hr}
+/${alignr}${fs_used /} de ${fs_size /}
+${fs_used_perc /}% ${fs_bar 4 /}
+/home${alignr}${fs_used /home} de ${fs_size /home}
+${fs_used_perc /home}% ${fs_bar 4 /home}
+
+${font Noto Sans Mono:size=12}CPU${font} ${hr}
+$cpu% ${cpubar 4}
+${top name 1}$alignr${top cpu 1}%
+${top name 2}$alignr${top cpu 2}%
+${top name 3}$alignr${top cpu 3}%
+${top name 4}$alignr${top cpu 4}%
+
+${font Noto Sans Mono:size=12}MEMORIA${font} ${hr}
+RAM${alignr}${mem} de ${memmax}
+$memperc% $membar
+Swap${alignr}${swap} de ${swapmax}
+$swapperc% $swapbar
+${top_mem name 1}${alignr}${top_mem mem_res 1}
+${top_mem name 2}${alignr}${top_mem mem_res 2}
+${top_mem name 3}${alignr}${top_mem mem_res 3}
+${top_mem name 4}${alignr}${top_mem mem_res 4}
+
+${font Noto Sans Mono:size=12}RED${font} ${hr}
+Subida${alignr}${upspeed wlp2s0}
+Total subido${alignr}${totalup wlp2s0}
+
+Bajada${alignr}${downspeed wlp2s0}
+Total bajado${alignr}${totaldown wlp2s0}
+
+${if_running spotify}${font Noto Sans Mono:size=12}SPOTIFY${font} ${hr}
+${exec ~/.config/conky-spotify/scripts/cover.sh}${image ~/.config/conky-spotify/current/current.jpg -p 0,807 -s 60x60 -n}
+
+
+
+Título:
+${exec ~/.config/conky-spotify/scripts/title.sh}
+
+Artista:
+${exec ~/.config/conky-spotify/scripts/artist.sh}
+
+Álbum:
+${exec ~/.config/conky-spotify/scripts/album.sh}
+${else}${if_running mpd}${font Noto Sans Mono:size=12}MPD${font} ${hr}
+${voffset -1}${font Noto Sans Mono:Bold:size=10}${color2}${mpd_bar 4}
+$alignr$color${font Noto Sans Mono:Bold:size=10}${voffset -5}$mpd_elapsed / $mpd_length ${voffset -1} ${if_match “$mpd_status” == “Playing”}￼$endif${if_match “$mpd_status” == “Paused”}▮▮$endif${if_match “$mpd_status” == “Stopped”}■$endif
+#${alignr}vol: $mpd_vol%
+
+${voffset -2}${font Noto Sans Mono:size=10}${if_empty $mpd_track}$else\#$mpd_track${if_empty ${mpd_title 45}}${font Noto Sans Mono:Bold:Italic:size=10}${alignr}[No Title]$else${font Noto Sans Mono:Bold:Italic:size=10}${alignr}${mpd_title 45}$endif
+
+${voffset -13}${if_empty $mpd_album}${font Noto Sans Mono:size=10}${alignc}[No Album]$else${font Noto Sans Mono:size=10}${alignc}~$mpd_album~$endif
+#${voffset -13}${font Bitstream Vera Sans:size=8}${color}${alignr}$mpd_date
+${voffset 2}${if_empty $mpd_artist}${font Noto Sans Mono:size=10}[No Artist]$else${font Noto Sans Mono:Bold:size=10}$mpd_artist$endif
+$endif
+]]
