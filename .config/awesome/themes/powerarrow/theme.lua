@@ -113,7 +113,7 @@ theme.cal = lain.widget.cal({
     --cal = "cal --color=always",
     attach_to = { binclock.widget },
     notification_preset = {
-        font = "xos4 Terminus 10",
+        font = "Noto Sans Mono 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
