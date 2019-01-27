@@ -489,6 +489,18 @@ globalkeys = my_table.join(
         {description = "volume 0%", group = "hotkeys"}),
 
     -- MPD control
+    awful.key({ altkey, "Control" }, "h",
+        function ()
+            os.execute("mpc volume +1")
+            beautiful.mpd.update()
+        end,
+        {description = "mpc volume +1", group = "widgets"}),
+    awful.key({ altkey, "Control" }, "l",
+        function ()
+            os.execute("mpc volume -1")
+            beautiful.mpd.update()
+        end,
+        {description = "mpc volume -1", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Up",
         function ()
             os.execute("mpc toggle")
