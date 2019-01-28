@@ -92,9 +92,9 @@ ${exec ~/.config/conky-spotify/scripts/artist.sh}
 Álbum:
 ${exec ~/.config/conky-spotify/scripts/album.sh}
 ${else}${if_running mpd}${font Noto Sans Mono:size=12}MPD${font} ${hr}
+$alignr$color${font Noto Sans Mono:Bold:size=10}${voffset -5}$mpd_elapsed / $mpd_length
 ${voffset -1}${font Noto Sans Mono:Bold:size=10}${color2}${mpd_bar 4}
-$alignr$color${font Noto Sans Mono:Bold:size=10}${voffset -5}$mpd_elapsed / $mpd_length ${voffset -1} ${if_match “$mpd_status” == “Playing”}￼$endif${if_match “$mpd_status” == “Paused”}▮▮$endif${if_match “$mpd_status” == “Stopped”}■$endif
-#${alignr}vol: $mpd_vol%
+${alignr}volúmen: $mpd_vol%
 
 ${voffset -2}${font Noto Sans Mono:size=10}${if_empty $mpd_track}$else\#$mpd_track${if_empty ${mpd_title 45}}${font Noto Sans Mono:Bold:Italic:size=10}${alignr}[No Title]$else${font Noto Sans Mono:Bold:Italic:size=10}${alignr}${mpd_title 45}$endif
 
