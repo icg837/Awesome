@@ -46,7 +46,7 @@ ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Encendido${alignr}${uptim
 ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Frecuencia de CPU${alignr}${freq_g} GHz
 ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Temperatura de CPU${alignr}${hwmon temp 1} ºC
 #${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Actualizaciones rama ${execi 130000 cat /etc/pacman-mirrors.conf | grep -i "Branch =" | sed -E "s/(# )*Branch = //g"}${offset 40}${execi 1800 checkupdates | wc -l}
-${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Pacman: ${alignr}${execi 1800 checkupdates | awk 'END { print (NR == 0 ? "Sistema actualizado" : NR " paquete" (NR > 1 ? "s" : "")); }'}
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Pacman ${alignr}${execi 1800 checkupdates | awk 'END { print (NR == 0 ? "Sistema actualizado" : NR " paquete" (NR > 1 ? "s" : "")); }'}
 ${font DejaVu Sans Mono:size=12}|__| |__| |__|${font}  Manjaro GNU/Linux ${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
  
 ${font Noto Sans Mono:size=12}USO DE DISCO${font} ${hr}
