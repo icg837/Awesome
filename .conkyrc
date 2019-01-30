@@ -45,7 +45,8 @@ ${font DejaVu Sans Mono:size=12}|  |  __  |  |${font}  Núcleo${alignr}${exec un
 ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Encendido${alignr}${uptime}
 ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Frecuencia de CPU${alignr}${freq_g} GHz
 ${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Temperatura de CPU${alignr}${hwmon temp 1} ºC
-${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Actualizaciones rama ${execi 130000 cat /etc/pacman-mirrors.conf | grep -i "Branch =" | sed -E "s/(# )*Branch = //g"}${offset 40}${execi 1800 checkupdates | wc -l}
+#${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Actualizaciones rama ${execi 130000 cat /etc/pacman-mirrors.conf | grep -i "Branch =" | sed -E "s/(# )*Branch = //g"}${offset 40}${execi 1800 checkupdates | wc -l}
+${font DejaVu Sans Mono:size=12}|  | |  | |  |${font}  Pacman: ${alignr}${execi 1800 checkupdates | awk 'END { print (NR == 0 ? "Sistema actualizado" : NR " paquete" (NR > 1 ? "s" : "")); }'}
 ${font DejaVu Sans Mono:size=12}|__| |__| |__|${font}  Manjaro GNU/Linux ${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
  
 ${font Noto Sans Mono:size=12}USO DE DISCO${font} ${hr}
@@ -78,20 +79,20 @@ Total subido${alignr}${totalup wlp2s0}
 Bajada${alignr}${downspeed wlp2s0}
 Total bajado${alignr}${totaldown wlp2s0}
 
-${if_running spotify}${font Noto Sans Mono:size=12}SPOTIFY${font} ${hr}
-${exec ~/.config/conky-spotify/scripts/cover.sh}${image ~/.config/conky-spotify/current/current.jpg -p 0,807 -s 60x60 -n}
+#${if_running spotify}${font Noto Sans Mono:size=12}SPOTIFY${font} ${hr}
+#${exec ~/.config/conky-spotify/scripts/cover.sh}${image ~/.config/conky-spotify/current/current.jpg -p 0,807 -s 60x60 -n}
 
 
 
-Título:
-${exec ~/.config/conky-spotify/scripts/title.sh}
+#Título:
+#${exec ~/.config/conky-spotify/scripts/title.sh}
 
-Artista:
-${exec ~/.config/conky-spotify/scripts/artist.sh}
+#Artista:
+#${exec ~/.config/conky-spotify/scripts/artist.sh}
 
-Álbum:
-${exec ~/.config/conky-spotify/scripts/album.sh}
-${else}${if_running mpd}${font Noto Sans Mono:size=12}MPD${font} ${hr}
+#Álbum:
+#${exec ~/.config/conky-spotify/scripts/album.sh}
+${voffset -90}${if_running mpd}${font Noto Sans Mono:size=12}MPD${font} ${hr}
 $alignr$color${font Noto Sans Mono:Bold:size=10}${voffset -5}$mpd_elapsed / $mpd_length
 ${voffset -1}${font Noto Sans Mono:Bold:size=10}${color2}${mpd_bar 4}
 ${alignr}volúmen: $mpd_vol%
