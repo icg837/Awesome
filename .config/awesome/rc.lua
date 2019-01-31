@@ -86,7 +86,7 @@ local themes = {
     "alone",           -- 11
 }
 
-local chosen_theme = themes[7]
+local chosen_theme = themes[6]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvt"
@@ -97,8 +97,9 @@ local guieditor    = "atom"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "一", "二", "三", "四", "五", "六", "七", "八", "九" }
---awful.util.tagnames = { "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001" }
+--awful.util.tagnames = { "一", "二", "三", "四", "五", "六", "七", "八", "九" }
+--awful.util.tagnames = { "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001"  }
+awful.util.tagnames = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" } 
 awful.layout.layouts = {
     --awful.layout.suit.floating,
     --awful.layout.suit.tile,
@@ -259,8 +260,8 @@ end
 
 -- configuration - edit to your liking
 wp_index = 1
-wp_timeout  = 10800 -- every 3 hours (24*60*60/intervale in hours = seconds left to change randomly wallpaper)
-wp_path = "/path/to/theme/wallpapers/" -- change path when you change your theme, to match the wallpaper tones with the theme tone.
+wp_timeout  = 10800
+wp_path = "/home/ignacio/Imágenes/Fondos/awesome/"
 wp_filter = function(s) return string.match(s,"%.png$") or string.match(s,"%.jpg$") end
 wp_files = scandir(wp_path, wp_filter)
  
@@ -307,10 +308,10 @@ globalkeys = my_table.join(
               {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
-    --[[ awful.key({ altkey, "Control" }, "c", function () os.execute(scrlocker) end,
+    --[[awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
               {description = "lock screen", group = "hotkeys"}),
     --]]
-
+             
     -- Hotkeys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description = "show help", group="awesome"}),
@@ -544,7 +545,7 @@ globalkeys = my_table.join(
             end
             naughty.notify(common)
         end,
-        {description = "mpc on/off", group = "widgets"}),
+        {description = "mpd on/off", group = "widgets"}),
 
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey }, "c", function () awful.spawn.with_shell("xsel | xsel -i -b") end,
